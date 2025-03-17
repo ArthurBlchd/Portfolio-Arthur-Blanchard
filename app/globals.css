@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 60 86% 50%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 90%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 60 86% 50%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Sofia Sans', sans-serif;
+  }
+}
+
+@keyframes appears1 {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-appears1 {
+  animation: appears1 0.8s ease-out forwards;
+}
+html, body, main {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Service Cards Styles */
+.service-card {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  max-height: 60px; /* Initial max-height */
+  background-color: #000;
+  border-radius: 30px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.5s ease; /* Transition all properties */
+}
+
+.service-card.active {
+  max-height: 200px; /* Large enough to accommodate content */
+  background: linear-gradient(to right, #a8d325, #7a9c1b);
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #a8d325;
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+
+.service-card.active .icon {
+  left: calc(100% - 60px);
+  background-color: #a8d325;
+  color: #000;
+}
+
+.text-content {
+  position: absolute;
+  top: 50%;
+  left: 70px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.service-card.active .text-content {
+  color: #000;
+}
+
+.service-description {
+  padding: 70px 20px 20px;
+  color: #000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: none;
+}
+
+.service-card.active .service-description {
+  opacity: 1;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(168, 211, 37, 1) 0%,
+    rgba(168, 211, 37, 0.8) 20%,
+    rgba(168, 211, 37, 0.6) 40%,
+    rgba(168, 211, 37, 0.4) 60%,
+    rgba(168, 211, 37, 0.2) 80%,
+    rgba(168, 211, 37, 0) 100%
+  );
+  transition: width 0.5s ease;
+  z-index: 0;
+}
+
+.service-card:hover:not(.active) .overlay {
+  width: 33%;
+}
+
+.service-card:hover:not(.active) .text-content {
+  color: #000;
+}
+
+/* Ajout de l'espacement vertical entre les cartes */
+.services-container {
+  display: flex;
+  flex-direction: column; /* Stack cards vertically */
+  gap: 20px; /* Ajoute un espacement vertical de 20px entre chaque carte */
+  width: 100%; /* Ensure container takes full width */
+  max-width: 600px; /* Optional: Limit width for better readability */
+  margin: 0 auto; /* Center the container horizontally */
+}
