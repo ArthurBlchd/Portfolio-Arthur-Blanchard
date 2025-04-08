@@ -190,7 +190,7 @@ export default function Home() {
                   </li>
                   <li>
   <a
-    href="/resume.pdf" // path to your resume file
+    href="/Resume_Arthur_Blanchard.pdf" // path to your resume file
     download
     className="text-gray-300 hover:text-white transition-colors text-sm md:text-base"
     onClick={() => setIsMenuOpen(false)}
