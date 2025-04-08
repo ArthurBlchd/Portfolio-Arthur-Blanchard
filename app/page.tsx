@@ -188,6 +188,16 @@ export default function Home() {
                       About Me
                     </Link>
                   </li>
+                  <li>
+  <a
+    href="/resume.pdf" // path to your resume file
+    download
+    className="text-gray-300 hover:text-white transition-colors text-sm md:text-base"
+    onClick={() => setIsMenuOpen(false)}
+  >
+    Download Resume
+  </a>
+</li>
                 </ul>
               </nav>
 
